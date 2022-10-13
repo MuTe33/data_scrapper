@@ -1,0 +1,50 @@
+name: build-and-upload-top-sales
+
+env:
+  DART_SDK_VERSION: 2.18.1
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+
+jobs:
+  build:
+    name: Build and upload Top Sales
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ env.DART_SDK_VERSION }}
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-firestore-importer-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./tools/firestore_importer/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Install NodeJS dependencies for firestore importer
+        working-directory: ./firestore_importer
+        run: npm install
+
+      - name: Install Collection Builder dependencies
+        working-directory: data_scrapper
+        run: dart pub get
+
+      - name: Build Collections
+        working-directory: data_scrapper
+        run: dart bin/main.dart
+
+      - name: Upload Collections to Firebase
+        working-directory: ./firestore_importer
+        run: npm run migrate import ../top_sale_events.json

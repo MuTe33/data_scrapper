@@ -1,0 +1,15 @@
+enum FeedEventPlace {
+  opensea,
+  gem,
+  x2y2,
+  looksrare,
+  foundation,
+  rarible,
+  superrare,
+  cryptoPunks,
+  zora,
+  nouns,
+  lilNouns,
+  zerox,
+  unknown,
+}
