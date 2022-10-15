@@ -39,7 +39,6 @@ jobs:
         run: npm install
 
       - name: Install Collection Builder dependencies
-        working-directory: data_scrapper
         run: dart pub get
 
       - name: Get firestore importer credentials
@@ -47,10 +46,8 @@ jobs:
         run: echo secrets.FIRESTORE_IMPORTER_CREDENTIALS | base64 --decode > credentials.json
 
       - name: Build Collections
-        working-directory: data_scrapper
         run: dart bin/main.dart
 
       - name: Upload Collections to Firebase
         working-directory: ./firestore_importer
         run: npm run migrate import ../top_sale_events.json
-        
