@@ -4,9 +4,8 @@ env:
   DART_SDK_VERSION: 2.18.1
 
 on:
-  push:
-  # schedule:
-  #   - cron: '*/10 * * * *'
+  schedule:
+    - cron: '*/10 * * * *'
 
 jobs:
   build:
