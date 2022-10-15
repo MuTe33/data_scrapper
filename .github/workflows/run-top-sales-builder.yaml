@@ -22,18 +22,6 @@ jobs:
         with:
           sdk: ${{ env.DART_SDK_VERSION }}
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-firestore-importer-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./tools/firestore_importer/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
       - name: Install NodeJS dependencies for firestore importer
         working-directory: ./firestore_importer
         run: npm install
