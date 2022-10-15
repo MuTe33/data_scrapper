@@ -53,3 +53,4 @@ jobs:
       - name: Upload Collections to Firebase
         working-directory: ./firestore_importer
         run: npm run migrate import ../top_sale_events.json
+        
