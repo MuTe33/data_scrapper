@@ -43,7 +43,7 @@ jobs:
 
       - name: Get firestore importer credentials
         working-directory: ./firestore_importer
-        run: echo secrets.FIRESTORE_IMPORTER_CREDENTIALS | base64 --decode > credentials.json
+        run: echo ${{ secrets.FIRESTORE_IMPORTER_CREDENTIALS }} | base64 --decode > credentials.json
 
       - name: Build Collections
         run: dart bin/main.dart
