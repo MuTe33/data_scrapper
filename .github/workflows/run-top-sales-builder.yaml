@@ -4,8 +4,9 @@ env:
   DART_SDK_VERSION: 2.18.1
 
 on:
-  schedule:
-    - cron: '*/10 * * * *'
+  push:
+  # schedule:
+  #   - cron: '*/10 * * * *'
 
 jobs:
   build:
@@ -40,6 +41,10 @@ jobs:
       - name: Install Collection Builder dependencies
         working-directory: data_scrapper
         run: dart pub get
+
+      - name: Get firestore importer credentials
+        working-directory: ./firestore_importer
+        run: echo secrets.FIRESTORE_IMPORTER_CREDENTIALS | base64 --decode > credentials.json
 
       - name: Build Collections
         working-directory: data_scrapper
