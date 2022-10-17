@@ -29,7 +29,7 @@ class DataZoraTopSaleMapper {
   String _toUnixTimestamp(String timestamp) {
     final dateTime = DateTime.tryParse(timestamp) ?? DateTime.now();
 
-    return dateTime.millisecondsSinceEpoch.toString();
+    return dateTime.microsecondsSinceEpoch.toString();
   }
 
   FeedEventPlace _mapEventPlace(String eventPlace) {
