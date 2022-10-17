@@ -17,9 +17,17 @@ class DataZoraTokenMapper {
       collectionName: isEns ? 'ENS' : collectionName!,
       tokenId: from.token.tokenId,
       name: from.token.name,
-      imageUrl: from.token.image?.url,
+      imageUrl: _mapImageUrl(from.token.image?.url),
       ethPrice: from.sale.price.ethPrice.decimal,
       fiatPrice: from.sale.price.usdcPrice.decimal,
     );
+  }
+
+  String? _mapImageUrl(String? imageUrl) {
+    if (imageUrl == null) return null;
+
+    if (imageUrl.contains('svg')) return null;
+
+    return imageUrl;
   }
 }
