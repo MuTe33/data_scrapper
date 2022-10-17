@@ -21,10 +21,20 @@ class FeedEvent {
 
   Map<String, dynamic> toJson() => _$FeedEventToJson(this);
 
+  @JsonKey(name: 'transaction_hash')
   final String hash;
+
   final String timestamp;
+
+  @JsonKey(name: 'transaction')
   final FeedTx tx;
+
+  @JsonKey(name: 'event_place')
   final FeedEventPlace eventPlace;
+
+  @JsonKey(name: 'transaction_type')
   final FeedTxType txType;
+
+  @JsonKey(name: 'transaction_fee')
   final double? txFee;
 }

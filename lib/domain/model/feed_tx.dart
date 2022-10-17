@@ -19,10 +19,18 @@ class FeedTx {
 
   Map<String, dynamic> toJson() => _$FeedTxToJson(this);
 
+  @JsonKey(name: 'main_address')
   final String mainAddress;
+
+  @JsonKey(name: 'secondary_address')
   final String secondaryAddress;
+
   final List<FeedToken> tokens;
+
+  @JsonKey(name: 'main_ens')
   final String? mainEns;
+
+  @JsonKey(name: 'secondary_ens')
   final String? secondaryEns;
   final Avatar? avatar;
 }

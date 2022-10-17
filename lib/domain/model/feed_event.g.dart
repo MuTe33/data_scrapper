@@ -7,21 +7,21 @@ part of 'feed_event.dart';
 // **************************************************************************
 
 FeedEvent _$FeedEventFromJson(Map<String, dynamic> json) => FeedEvent(
-      hash: json['hash'] as String,
+      hash: json['transaction_hash'] as String,
       timestamp: json['timestamp'] as String,
-      tx: FeedTx.fromJson(json['tx'] as Map<String, dynamic>),
-      eventPlace: $enumDecode(_$FeedEventPlaceEnumMap, json['eventPlace']),
-      txType: $enumDecode(_$FeedTxTypeEnumMap, json['txType']),
-      txFee: (json['txFee'] as num?)?.toDouble(),
+      tx: FeedTx.fromJson(json['transaction'] as Map<String, dynamic>),
+      eventPlace: $enumDecode(_$FeedEventPlaceEnumMap, json['event_place']),
+      txType: $enumDecode(_$FeedTxTypeEnumMap, json['transaction_type']),
+      txFee: (json['transaction_fee'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$FeedEventToJson(FeedEvent instance) => <String, dynamic>{
-      'hash': instance.hash,
+      'transaction_hash': instance.hash,
       'timestamp': instance.timestamp,
-      'tx': instance.tx,
-      'eventPlace': _$FeedEventPlaceEnumMap[instance.eventPlace]!,
-      'txType': _$FeedTxTypeEnumMap[instance.txType]!,
-      'txFee': instance.txFee,
+      'transaction': instance.tx,
+      'event_place': _$FeedEventPlaceEnumMap[instance.eventPlace]!,
+      'transaction_type': _$FeedTxTypeEnumMap[instance.txType]!,
+      'transaction_fee': instance.txFee,
     };
 
 const _$FeedEventPlaceEnumMap = {

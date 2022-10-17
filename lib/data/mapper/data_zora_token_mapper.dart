@@ -13,7 +13,7 @@ class DataZoraTokenMapper {
     }
 
     return FeedToken(
-      collectionAddress: from.token.collectionAddress,
+      contractAddress: from.token.collectionAddress,
       collectionName: isEns ? 'ENS' : collectionName!,
       tokenId: from.token.tokenId,
       name: from.token.name,

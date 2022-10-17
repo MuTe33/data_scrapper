@@ -7,23 +7,23 @@ part of 'feed_tx.dart';
 // **************************************************************************
 
 FeedTx _$FeedTxFromJson(Map<String, dynamic> json) => FeedTx(
-      mainAddress: json['mainAddress'] as String,
-      secondaryAddress: json['secondaryAddress'] as String,
+      mainAddress: json['main_address'] as String,
+      secondaryAddress: json['secondary_address'] as String,
       tokens: (json['tokens'] as List<dynamic>)
           .map((e) => FeedToken.fromJson(e as Map<String, dynamic>))
           .toList(),
-      mainEns: json['mainEns'] as String?,
-      secondaryEns: json['secondaryEns'] as String?,
+      mainEns: json['main_ens'] as String?,
+      secondaryEns: json['secondary_ens'] as String?,
       avatar: json['avatar'] == null
           ? null
           : Avatar.fromJson(json['avatar'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$FeedTxToJson(FeedTx instance) => <String, dynamic>{
-      'mainAddress': instance.mainAddress,
-      'secondaryAddress': instance.secondaryAddress,
+      'main_address': instance.mainAddress,
+      'secondary_address': instance.secondaryAddress,
       'tokens': instance.tokens,
-      'mainEns': instance.mainEns,
-      'secondaryEns': instance.secondaryEns,
+      'main_ens': instance.mainEns,
+      'secondary_ens': instance.secondaryEns,
       'avatar': instance.avatar,
     };
