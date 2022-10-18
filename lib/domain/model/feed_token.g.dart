@@ -8,7 +8,6 @@ part of 'feed_token.dart';
 
 FeedToken _$FeedTokenFromJson(Map<String, dynamic> json) => FeedToken(
       contractAddress: json['contract_address'] as String,
-      collectionName: json['collection_name'] as String,
       tokenId: json['token_id'] as String,
       name: json['name'] as String?,
       imageUrl: json['image_url'] as String?,
@@ -18,7 +17,6 @@ FeedToken _$FeedTokenFromJson(Map<String, dynamic> json) => FeedToken(
 
 Map<String, dynamic> _$FeedTokenToJson(FeedToken instance) => <String, dynamic>{
       'contract_address': instance.contractAddress,
-      'collection_name': instance.collectionName,
       'token_id': instance.tokenId,
       'name': instance.name,
       'image_url': instance.imageUrl,

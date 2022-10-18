@@ -6,7 +6,6 @@ part 'feed_token.g.dart';
 class FeedToken {
   FeedToken({
     required this.contractAddress,
-    required this.collectionName,
     required this.tokenId,
     this.name,
     this.imageUrl,
@@ -21,9 +20,6 @@ class FeedToken {
 
   @JsonKey(name: 'contract_address')
   final String contractAddress;
-
-  @JsonKey(name: 'collection_name')
-  final String collectionName;
 
   @JsonKey(name: 'token_id')
   final String tokenId;

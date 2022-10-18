@@ -8,7 +8,7 @@ part of 'feed_event.dart';
 
 FeedEvent _$FeedEventFromJson(Map<String, dynamic> json) => FeedEvent(
       hash: json['transaction_hash'] as String,
-      timestamp: json['timestamp'] as String,
+      timestamp: json['timestamp'] as int,
       tx: FeedTx.fromJson(json['transaction'] as Map<String, dynamic>),
       eventPlace: $enumDecode(_$FeedEventPlaceEnumMap, json['event_place']),
       txType: $enumDecode(_$FeedTxTypeEnumMap, json['transaction_type']),

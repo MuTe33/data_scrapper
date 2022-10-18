@@ -9,7 +9,9 @@ part of 'data_zora_top_sale.dart';
 DataZoraTopSale _$DataZoraTopSaleFromJson(Map<String, dynamic> json) =>
     DataZoraTopSale(
       DataZoraSale.fromJson(json['sale'] as Map<String, dynamic>),
-      DataZoraToken.fromJson(json['token'] as Map<String, dynamic>),
+      json['token'] == null
+          ? null
+          : DataZoraToken.fromJson(json['token'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DataZoraTopSaleToJson(DataZoraTopSale instance) =>

@@ -5,22 +5,36 @@ const ensContract = '0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85';
 
 class DataZoraTokenMapper {
   FeedToken? map(DataZoraTopSale from) {
-    final collectionName = from.token.collectionName;
-    final isEns = from.token.collectionAddress.contains(ensContract);
+    final token = from.token;
 
-    if (collectionName == null && !isEns) {
+    if (token == null) {
       return null;
     }
 
     return FeedToken(
-      contractAddress: from.token.collectionAddress,
-      collectionName: isEns ? 'ENS' : collectionName!,
-      tokenId: from.token.tokenId,
-      name: from.token.name,
-      imageUrl: _mapImageUrl(from.token.image?.url),
+      contractAddress: token.collectionAddress,
+      tokenId: token.tokenId,
+      name: _mapName(
+        token.tokenId,
+        token.collectionName,
+        token.name,
+      ),
+      imageUrl: _mapImageUrl(token.image?.url),
       ethPrice: from.sale.price.ethPrice.decimal,
       fiatPrice: from.sale.price.usdcPrice.decimal,
     );
+  }
+
+  String? _mapName(String tokenId, String? collectionName, String? tokenName) {
+    if (tokenName != null) {
+      return tokenName;
+    }
+
+    if (collectionName != null) {
+      return '$collectionName $tokenId';
+    }
+
+    return tokenId;
   }
 
   String? _mapImageUrl(String? imageUrl) {

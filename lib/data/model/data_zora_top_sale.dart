@@ -18,5 +18,5 @@ class DataZoraTopSale {
   final DataZoraSale sale;
 
   @JsonKey(name: 'token')
-  final DataZoraToken token;
+  final DataZoraToken? token;
 }

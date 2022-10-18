@@ -24,7 +24,7 @@ class FeedEvent {
   @JsonKey(name: 'transaction_hash')
   final String hash;
 
-  final String timestamp;
+  final int timestamp;
 
   @JsonKey(name: 'transaction')
   final FeedTx tx;
