@@ -7,7 +7,7 @@ class FeedToken {
   FeedToken({
     required this.contractAddress,
     required this.tokenId,
-    this.name,
+    required this.name,
     this.imageUrl,
     this.ethPrice,
     this.fiatPrice,
@@ -24,7 +24,7 @@ class FeedToken {
   @JsonKey(name: 'token_id')
   final String tokenId;
 
-  final String? name;
+  final String name;
 
   @JsonKey(name: 'image_url')
   final String? imageUrl;

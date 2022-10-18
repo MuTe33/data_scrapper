@@ -78,6 +78,11 @@ query TopSalesLast24h {
         tokenId
         image {
           url
+          mediaEncoding {
+            ... on ImageEncodingTypes {
+              original
+            }
+          }
         }
       }
     }

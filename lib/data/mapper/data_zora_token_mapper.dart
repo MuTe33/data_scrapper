@@ -1,3 +1,4 @@
+import 'package:data_scrapper/data/model/data_zora_token_image.dart';
 import 'package:data_scrapper/data/model/data_zora_top_sale.dart';
 import 'package:data_scrapper/domain/model/feed_token.dart';
 
@@ -19,13 +20,13 @@ class DataZoraTokenMapper {
         token.collectionName,
         token.name,
       ),
-      imageUrl: _mapImageUrl(token.image?.url),
+      imageUrl: _mapImageUrl(token.image),
       ethPrice: from.sale.price.ethPrice.decimal,
       fiatPrice: from.sale.price.usdcPrice.decimal,
     );
   }
 
-  String? _mapName(String tokenId, String? collectionName, String? tokenName) {
+  String _mapName(String tokenId, String? collectionName, String? tokenName) {
     if (tokenName != null) {
       return tokenName;
     }
@@ -37,11 +38,32 @@ class DataZoraTokenMapper {
     return tokenId;
   }
 
-  String? _mapImageUrl(String? imageUrl) {
-    if (imageUrl == null) return null;
+  String? _mapImageUrl(DataZoraTokenImage? image) {
+    if (image == null) return null;
 
-    if (imageUrl.contains('svg')) return null;
+    if (image.mediaEncoding?.original != null) {
+      return image.mediaEncoding!.original;
+    }
 
-    return imageUrl;
+    if (image.url != null) {
+      // ipfs://QmXxrcKSNm7pHujAGGvgZu2P9wM5NeJzguEMat2yjnfzLp/8747.png
+      // https://ipfs.io/ipfs/QmXxrcKSNm7pHujAGGvgZu2P9wM5NeJzguEMat2yjnfzLp/8747.png
+      final ipfsRegExp = RegExp(r'(ipfs:\/\/)(.*)');
+
+      if (ipfsRegExp.hasMatch(image.url!)) {
+        final match = ipfsRegExp.firstMatch(image.url!);
+        final filePath = match!.group(2);
+
+        return 'https://ipfs.io/ipfs/$filePath';
+      }
+
+      if (!image.url!.contains('svg')) {
+        return image.url;
+      }
+
+      return null;
+    }
+
+    return null;
   }
 }
