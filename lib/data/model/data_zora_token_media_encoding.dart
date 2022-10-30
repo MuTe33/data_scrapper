@@ -10,5 +10,5 @@ class DataZoraTokenMediaEncoding {
       _$DataZoraTokenMediaEncodingFromJson(json);
 
   @JsonKey(name: 'original')
-  final String original;
+  final String? original;
 }
