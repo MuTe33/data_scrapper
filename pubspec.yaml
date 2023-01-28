@@ -3,15 +3,14 @@ description: scrapper various things
 version: 1.0.0
 
 environment:
-  sdk: '>=2.18.1 <3.0.0'
-
+  sdk: ">=2.18.1 <3.0.0"
 
 dependencies:
   args: ^2.3.1
   dio: ^4.0.4
   freezed_annotation: ^1.1.0
-  gql_dio_link: ^0.2.2
-  graphql: ^5.1.1
+  gql_dio_link: ^0.2.4
+  graphql: ^5.1.3
   intl: ^0.17.0
 
 dev_dependencies:
